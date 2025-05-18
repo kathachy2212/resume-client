@@ -1,0 +1,8 @@
+.card {
+  border-radius: 15px;
+}
+
+.card-header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}

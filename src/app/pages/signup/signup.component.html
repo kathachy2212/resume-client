@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="card shadow-lg w-100" style="max-width: 950px;">
+    <div class="row g-0">
+
+      <!-- Left Side -->
+      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-primary text-white p-4 rounded-start">
+        <h3 class="mb-3 text-center">Welcome to ResumeApp!</h3>
+        <p class="text-center px-2">Create your account and start tracking your resume status in one place.</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Register Illustration" class="img-fluid mt-3" style="max-height: 200px;">
+      </div>
+
+      <!-- Right Side: Form -->
+      <div class="col-md-6 p-4 bg-white rounded-end">
+        <h4 class="mb-4 text-center">Register</h4>
+
+        <form [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
+
+          <!-- Full Name -->
+          <div class="form-floating mb-3">
+            <input formControlName="full_name" type="text" class="form-control" id="fullName" placeholder="Full Name" />
+            <label for="fullName">Full Name</label>
+            <div *ngIf="signupForm.get('full_name')?.invalid && signupForm.get('full_name')?.touched" class="text-danger small">
+              Full name is required.
+            </div>
+          </div>
+
+          <!-- Username -->
+          <div class="form-floating mb-3">
+            <input formControlName="username" type="text" class="form-control" id="username" placeholder="Username" />
+            <label for="username">Username</label>
+            <div *ngIf="signupForm.get('username')?.errors?.['usernameTaken'] && signupForm.get('username')?.touched" class="text-danger small">
+              Username is already taken.
+            </div>
+            <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched && !signupForm.get('username')?.errors?.['usernameTaken']" class="text-danger small">
+              Username is required.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-floating mb-3">
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email" />
+            <label for="email">Email</label>
+            <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="text-danger small">
+              Please enter a valid email.
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-floating mb-3">
+            <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Phone" />
+            <label for="phone">Phone</label>
+            <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="text-danger small">
+              Phone number is required.
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-floating mb-3">
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password" />
+            <label for="password">Password</label>
+            <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="text-danger small">
+              Password must be at least 6 characters.
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-floating mb-3">
+            <input formControlName="confirm_password" type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" />
+            <label for="confirmPassword">Confirm Password</label>
+            <div *ngIf="signupForm.errors?.['passwordsMismatch'] && signupForm.get('confirm_password')?.touched" class="text-danger small">
+              Passwords do not match.
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-primary w-100 mt-2" type="submit" [disabled]="signupForm.invalid">Register</button>
+
+          <!-- Feedback -->
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+        </form>
+
+        <!-- Link to login -->
+        <div class="mt-4 text-center">
+          <p class="mb-0">Already have an account? <a routerLink="/login">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

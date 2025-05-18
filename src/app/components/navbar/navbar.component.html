@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm">
+  <div class="container-fluid w-100 d-flex justify-content-between align-items-center">
+
+    <!-- Left Section: Logo and Hello Message -->
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/upload">
+        <span class="ml-2">ResumeApp</span>
+      </a>
+      <span *ngIf="auth.isLoggedIn()" class="navbar-text ml-3 text-primary font-weight-semibold">
+        Hello, {{ auth.getUserInfo()?.full_name }}
+      </span>
+    </div>
+
+    <!-- Center Section: Navigation Links -->
+    <div class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav" *ngIf="auth.isLoggedIn()">
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/upload">Check Resume Status</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/skills">Skills</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Section: Logout Button -->
+    <div class="d-flex align-items-center">
+      <button *ngIf="auth.isLoggedIn()" class="btn btn-outline-danger" (click)="logout()">Logout</button>
+    </div>
+
+  </div>
+</nav>

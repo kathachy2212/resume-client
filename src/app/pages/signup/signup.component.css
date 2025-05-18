@@ -1,0 +1,17 @@
+.card {
+  border-radius: 15px;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
+}
+
+
+input.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}
+
+.text-danger.small {
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
